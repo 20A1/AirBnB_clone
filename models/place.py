@@ -85,4 +85,3 @@ class Place(BaseModel):
                 self.amenity_ids = kwargs["amenity_ids"]
             else:
                 self.amenity_ids = []
-
