@@ -21,6 +21,3 @@ class State(BaseModel):
         else:
             if "name" in kwargs:
                 self.name = kwargs["name"]
-
-
-
