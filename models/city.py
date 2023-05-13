@@ -29,4 +29,3 @@ class City(BaseModel):
                 self.name = kwargs["name"]
             else:
                 self.name = ""
-
