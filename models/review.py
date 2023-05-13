@@ -36,4 +36,3 @@ class Review(BaseModel):
                 self.text = kwargs["text"]
             else:
                 self.text = ""
-
