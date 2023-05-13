@@ -23,4 +23,3 @@ class Amenity(BaseModel):
                 self.name = kwargs["name"]
             else:
                 self.name = ""
-
