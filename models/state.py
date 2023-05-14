@@ -15,9 +15,9 @@ class State(BaseModel):
     """
 
     def __init__(self, *args, **kwargs):
-        super().__init(*args, **kwargs)
         if kwargs is None or len(kwargs) == 0:
             self.name = ""
         else:
             if "name" in kwargs:
                 self.name = kwargs["name"]
+        super().__init(*args, **kwargs)
