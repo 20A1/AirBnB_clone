@@ -15,7 +15,6 @@ class Amenity(BaseModel):
     """
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
         if kwargs is None or len(kwargs) == 0:
             self.name = ""
         else:
@@ -23,3 +22,4 @@ class Amenity(BaseModel):
                 self.name = kwargs["name"]
             else:
                 self.name = ""
+        super().__init__(*args, **kwargs)
