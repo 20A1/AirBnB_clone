@@ -110,9 +110,24 @@ class HBNBCommand(cmd.Cmd):
             else:
                 key = "{0:s}.{1:s}".format(args[0], args[1])
                 dictionary = storage.all()
+                instance = None
                 if key in dictionary:
-                    print("[{:s}] ({:s}) {}".format(
-                        args[0], args[1], dictionary[key]))
+                    class_name = key.split(".")[0]
+                    if class_name == "BaseModel":
+                        instance = BaseModel(**dictionary[key])
+                    elif class_name == "User":
+                        instance = User(**dictionary[key])
+                    elif class_name == "State":
+                        instance = State(**dictionary[key])
+                    elif class_name == "City":
+                        instance = City(**dictionary[key])
+                    elif class_name == "Amenity":
+                        instance = Amenity(**dictionary[key])
+                    elif class_name == "Place":
+                        instance = Place(**dictionary[key])
+                    elif class_name == "Review":
+                        instance = Review(**dictionary[key])
+                    print(instance)
                 else:
                     print("** no instance found **")
 
