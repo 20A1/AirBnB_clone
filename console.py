@@ -1,17 +1,28 @@
 #!/usr/bin/python3
+"""
+This module contains the definition for the 'Console' class which is the entry
+point of the command interpreter
+"""
+
 
 import cmd
 from models import storage
 from models.base_model import BaseModel
 
+
 class HBNBCommand(cmd.Cmd):
+    """
+    A customised command line interpreter for the AirBnB_clone project
+    """
 
     prompt = "(hbnb) "
 
     def help_quit(self):
+        "Handles for the quit command with a 'help' argument"
         print("Quit command to exit the program\n")
 
     def help_EOF(self):
+        "Handles for the quit command with a 'EOF' argument"
         print("Quit command to exit the program\n")
 
     def do_quit(self, line):
@@ -56,8 +67,12 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
 
     def show(self, class_name, class_id):
+        """
+        Prints the information about the specified class
+        """
         print(class_name)
         print(class_id)
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
