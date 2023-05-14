@@ -9,6 +9,11 @@ import cmd
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -55,9 +60,9 @@ class HBNBCommand(cmd.Cmd):
         '**class doesn't exist **' (ex. $ create MyModel)
         """
 
-        if len(line) == 0:
+        if line is None or len(line) <= 0:
             print("** class name missing **")
-        elif len(line) > 0 and line not in self.__classes:
+        elif line not in self.__classes:
             print("** class doesn't exist **")
         else:
             inst = None
@@ -155,7 +160,21 @@ class HBNBCommand(cmd.Cmd):
         dictionary = storage.all()
         if arg is None or len(arg) == 0:
             for key in dictionary:
-                instances.append(BaseModel(**dictionary[key]))
+                class_name = key.split(".")[0]
+                if class_name == "BaseModel":
+                    instances.append(BaseModel(**dictionary[key]))
+                elif class_name == "User":
+                    instances.append(User(**dictionary[key]))
+                elif class_name == "State":
+                    instances.append(State(**dictionary[key]))
+                elif class_name == "City":
+                    instances.append(City(**dictionary[key]))
+                elif class_name == "Amenity":
+                    instances.append(Amenity(**dictionary[key]))
+                elif class_name == "Place":
+                    instances.append(Place(**dictionary[key]))
+                elif class_name == "Review":
+                    instances.append(Review(**dictionary[key]))
         else:
             if arg not in self.__classes:
                 print("** class doesn't exist **")
