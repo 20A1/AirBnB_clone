@@ -1,28 +1,26 @@
 #!/usr/bin/python3
 """
 This module contains the definition for the 'Console' class which is the entry
-point of the command interpreter
+points of the command interpreter
 """
 
 
 import cmd
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
-    """
-    A customised command line interpreter for the AirBnB_clone project
-    """
 
     prompt = "(hbnb) "
+    __classes = ["BaseModel", "User", "State", "City", "Amenity", "Place",
+                 "Review"]
 
     def help_quit(self):
-        "Handles for the quit command with a 'help' argument"
         print("Quit command to exit the program\n")
 
     def help_EOF(self):
-        "Handles for the quit command with a 'EOF' argument"
         print("Quit command to exit the program\n")
 
     def do_quit(self, line):
@@ -48,8 +46,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, line):
         """
-        Creates a new instance of BaseModel, saves it (to the JSON file) and
-        prints the id. Ex: $ create BaseModel
+        Creates a new instance of the class passed to the line argument,
+        saves it (to the JSON file) and prints the id. Ex: $ create BaseModel
 
         - If the class name is missing, print '** class name missing **'
         (ex: $ create)
@@ -57,22 +55,188 @@ class HBNBCommand(cmd.Cmd):
         '**class doesn't exist **' (ex. $ create MyModel)
         """
 
-        if line == "BaseModel":
-            base = BaseModel()
-            base.save()
-            print(base.id)
-        elif line != "BaseModel" and len(line) > 0:
+        if len(line) == 0:
+            print("** class name missing **")
+        elif len(line) > 0 and line not in self.classes:
             print("** class doesn't exist **")
         else:
+            inst = None
+            if line == "BaseModel":
+                inst = BaseModel()
+            elif line == "User":
+                inst = User()
+            elif line == "State":
+                inst = State()
+            elif line == "City":
+                inst = City()
+            elif line == "Amenity":
+                inst = Amenity()
+            elif line == "Place":
+                inst = Place()
+            elif line == "Review":
+                inst = Review()
+            inst.save
+            print(city.id)
+
+    def do_show(self, arg):
+        """
+        Prints the string representation of an instance based on the class name
+        and id. Ex $ show BaseModel 1234-1234-1234-1234
+
+        Some edge case and their handles are as follows:
+            - If the class name is missing, print ** class name missing **
+            (ex: $ show)
+            - If the class name doesn’t exist, print ** class doesn't exist **
+            (ex: $ show MyModel)
+            - If the id is missing, print ** instance id missing **
+            (ex: $ show BaseModel)
+            - If the instance of the class name doesn’t exist for the id,
+            print ** no instance found ** (ex: $ show BaseModel 121212)
+        """
+
+        args = arg.split()
+        if len(args) < 1:
             print("** class name missing **")
+        elif len(args) > 0:
+            if args[0] not in self.__classes:
+                print("** class doesn't exist **")
+            elif len(args) < 2:
+                print("** instance id missing **")
+            else:
+                key = "{0:s}.{1:s}".format(args[0], args[1])
+                dictionary = storage.all()
+                if key in dictionary:
+                    print(dictionary[key])
+                else:
+                    print("** no instance found **")
 
-    def show(self, class_name, class_id):
+    def do_destroy(self, arg):
         """
-        Prints the information about the specified class
+        Deletes an instance based on the class name and id (save the change
+        into the JSON file). Ex: $ destroy BaseModel 1234-1234-1234
+
+        - If the class name is missing, print ** class name missing **
+        (ex: $ destroy)
+        - If the class name doesn’t exist, print ** class doesn't exist **
+        (ex:$ destroy MyModel)
+        - If the id is missing, print ** instance id missing **
+        (ex: $ destroy BaseModel)
+        - If the instance of the class name doesn’t exist for the id, print
+        ** no instance found ** (ex: $ destroy BaseModel 121212)
         """
-        print(class_name)
-        print(class_id)
+
+        args = arg.split()
+        if len(args) < 1:
+            print("** class name missing **")
+        elif len(args) > 0:
+            if args[0] not in self.__classes:
+                print("** class doesn't exist **")
+            elif len(args) < 2:
+                print("** instance id missing **")
+            else:
+                key = "{0:s}.{1:s}".format(args[0], args[1])
+                dictionary = storage.all()
+                if key in dictionary:
+                    del (dictionary[key])
+                    storage.save()
+
+    def do_all(self, arg):
+        """
+        Prints all string representation of all instances based or not on the
+        class name. Ex: $ all BaseModel or $ all
+
+        - The printed result must be a list of strings
+        - If the class name doesn’t exist, print ** class doesn't exist **
+            (ex: $ all MyModel)
+        """
+
+        instances = []
+        dictionary = storage.all()
+        if arg is None or len(arg) == 0:
+            for key in dictionary:
+                instances.append(BaseModel(**dictionary[key]))
+        else:
+            if arg not in self.__classes:
+                print("** class doesn't exist **")
+            else:
+                for key in dictionary:
+                    if key.split(".")[0] == arg:
+                        if arg == "BaseModel":
+                            instances.append(BaseModel(**dictionary[key]))
+                        elif arg == "User":
+                            instances.append(User(**dictionary[key]))
+                        elif arg == "State":
+                            instances.append(State(**dictionary[key]))
+                        elif arg == "City":
+                            instances.append(City(**dictionary[key]))
+                        elif arg == "Amenity":
+                            instances.append(Amenity(**dictionary[key]))
+                        elif arg == "Place":
+                            instances.append(Place(**dictionary[key]))
+                        elif arg == "Review":
+                            instances.append(Review(**dictionary[key]))
+        for items in instances:
+            print(items)
+
+    def do_update(self, arg):
+        """
+        Updates an instance based on the class name and id by adding or
+        updating attribute (save the change into the JSON file).
+        Ex: $ update BaseModel 1234-1234-1234 email "aibnb@mail.com".
+
+        Usage: update <class name> <id> <attribute name> "<attribute value>"
+
+        Some edge case and their handles are as follows:
+            - If the class name is missing, print ** class name missing **
+            (ex: $ update)
+            - If the class name doesn’t exist, print ** class doesn't exist **
+            (ex: $ update MyModel)
+            - If the id is missing, print ** instance id missing **
+            (ex: $ update BaseModel)
+            - If the instance of the class name doesn’t exist for the id,
+            print ** no instance found ** (ex: $ update BaseModel 121212)
+            - If the attribute name is missing, print ** attribute name missing
+            ** (ex: $ update BaseModel existing-id)
+            - If the value for the attribute name doesn’t exist, print
+            ** value missing ** (ex: $ update BaseModel existing-id first_name)
+        """
+
+        if arg is None or len(arg) == 0:
+            print("** class name missing **")
+        else:
+            args = arg.split()
+            if args[0] not in self.__classes:
+                print("** class doesn't exist **")
+            else:
+                if len(args) < 2:
+                    print("** instance id missing **")
+                else:
+                    key = "{0:s}.{1:s}".format(args[0], args[1])
+                    dictionary = storage.all()
+                    if key not in dictionary:
+                        print("** no instance found **")
+                    else:
+                        if len(args) < 3:
+                            print("** attribute name missing **")
+                        elif len(args) < 4:
+                            print("** value missing **")
+                        else:
+                            numbers = ["number_rooms", "number_bathrooms",
+                                       "max_guest", "price_by_night"]
+                            dec_numbers = ["latitude", "longitude"]
+                            attrib = args[2]
+                            value = args[3]
+                            value = value.strip("\"")
+                            if attrib in numbers:
+                                dictionary[key][attrib] = int(value)
+                            elif attrib in dec_numbers:
+                                dictionary[key][attrib] = float(value)
+                            elif attrib == "amenity_ids":
+                                dictionary[key][attrib] = list(value)
+                            else:
+                                dictionary[key][attrib] = str(value)
+                            storage.save()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     HBNBCommand().cmdloop()
