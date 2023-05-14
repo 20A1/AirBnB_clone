@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 """
 This module contains the definition for the BaseModel class that defines all
 common attributes/methods for other classes
@@ -36,11 +35,13 @@ class BaseModel:
             self.updated_at = self.created_at
             storage.new(self)
         else:
-            self.id = kwargs["id"]
-            self.created_at = datetime.fromisoformat(kwargs["created_at"])
-            self.updated_at = datetime.fromisoformat(kwargs["updated_at"])
-            self.my_number = kwargs["my_number"]
-            self.name = kwargs["name"]
+            for key in kwargs:
+                if key is "__class__":
+                    continue
+                elif key is "created_at" or key is "updated_at":
+                    setattr(self, key, datetime.fromisoformat(kwargs[key]))
+                else:
+                    setattr(self, key, kwargs[key])
 
     def __str__(self):
         """
@@ -54,7 +55,6 @@ class BaseModel:
         Update the public instance attribute updated_at with the current
         datetime
         """
-
         self.updated_at = datetime.today()
         storage.save()
 
@@ -63,7 +63,6 @@ class BaseModel:
         Return a dictionary containing all keys/values of '__dict__' of the
         instance
         """
-
         curr = self.__dict__.copy()
         curr["__class__"] = type(self).__name__
         curr["created_at"] = "{:%Y-%m-%dT%H:%M:%S.%f}".format(self.created_at)
