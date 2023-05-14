@@ -29,3 +29,4 @@ class City(BaseModel):
                 self.name = kwargs["name"]
             else:
                 self.name = ""
+        super().__init__(*args, **kwargs)
