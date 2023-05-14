@@ -36,9 +36,9 @@ class BaseModel:
             storage.new(self)
         else:
             for key in kwargs:
-                if key is "__class__":
+                if key == "__class__":
                     continue
-                elif key is "created_at" or key is "updated_at":
+                elif key == "created_at" or key == "updated_at":
                     setattr(self, key, datetime.fromisoformat(kwargs[key]))
                 else:
                     setattr(self, key, kwargs[key])
