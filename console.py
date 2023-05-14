@@ -49,6 +49,160 @@ class HBNBCommand(cmd.Cmd):
 
         pass
 
+    def do_BaseModel(self, line):
+        """
+        Retrieves all instances of a class by using BaseModel.all()
+        """
+        if line is None or len(line) <= 0:
+            print("*** Unknown syntax: BaseModel.{:s}".format(line))
+        elif line != ".all()":
+            print("*** Unknown syntax: BaseModel.{:s}".format(line))
+        else:
+            instances = []
+            dictionary = storage.all()
+            for key in dictionary:
+                class_name = "BaseModel"
+                if key.split(".")[0] == class_name:
+                    instances.append(BaseModel(**dictionary[key]))
+            print("[", end="")
+            for i in range(len(instances)):
+                if i > 0:
+                    print(", ", end="")
+                print(instances[i], end="")
+            print("]")
+
+    def do_User(self, line):
+        """
+        Retrieves all instances of a class by using User.all()
+        """
+        if line is None or len(line) <= 0:
+            print("*** Unknown syntax: User.{:s}".format(line))
+        elif line != ".all()":
+            print("*** Unknown syntax: User.{:s}".format(line))
+        else:
+            instances = []
+            dictionary = storage.all()
+            for key in dictionary:
+                class_name = "User"
+                if key.split(".")[0] == class_name:
+                    instances.append(User(**dictionary[key]))
+            print("[", end="")
+            for i in range(len(instances)):
+                if i > 0:
+                    print(", ", end="")
+                print(instances[i], end="")
+            print("]")
+
+    def do_State(self, line):
+        """
+        Retrieves all instances of a class by using State.all()
+        """
+        if line is None or len(line) <= 0:
+            print("*** Unknown syntax: lState.{:s}".format(line))
+        elif line != ".all()":
+            print("*** Unknown syntax: kState.{:s}".format(line))
+        else:
+            instances = []
+            dictionary = storage.all()
+            for key in dictionary:
+                class_name = "State"
+                if key.split(".")[0] == class_name:
+                    instances.append(State(**dictionary[key]))
+            print("[", end="")
+            for i in range(len(instances)):
+                if i > 0:
+                    print(", ", end="")
+                print(instances[i], end="")
+            print("]")
+
+    def do_City(self, line):
+        """
+        Retrieves all instances of a class by using City.all()
+        """
+        if line is None or len(line) <= 0:
+            print("*** Unknown syntax: City.{:s}".format(line))
+        elif line != ".all()":
+            print("*** Unknown syntax: City.{:s}".format(line))
+        else:
+            instances = []
+            dictionary = storage.all()
+            for key in dictionary:
+                class_name = "City"
+                if key.split(".")[0] == class_name:
+                    instances.append(City(**dictionary[key]))
+            print("[", end="")
+            for i in range(len(instances)):
+                if i > 0:
+                    print(", ", end="")
+                print(instances[i], end="")
+            print("]")
+
+    def do_Amenity(self, line):
+        """
+        Retrieves all instances of a class by using Amenity.all()
+        """
+        if line is None or len(line) <= 0:
+            print("*** Unknown syntax: Amenity.{:s}".format(line))
+        elif line != ".all()":
+            print("*** Unknown syntax: Amenity.{:s}".format(line))
+        else:
+            instances = []
+            dictionary = storage.all()
+            for key in dictionary:
+                class_name = "Amenity"
+                if key.split(".")[0] == class_name:
+                    instances.append(Amenity(**dictionary[key]))
+            print("[", end="")
+            for i in range(len(instances)):
+                if i > 0:
+                    print(", ", end="")
+                print(instances[i], end="")
+            print("]")
+
+    def do_Place(self, line):
+        """
+        Retrieves all instances of a class by using Place.all()
+        """
+        if line is None or len(line) <= 0:
+            print("*** Unknown syntax: Place.{:s}".format(line))
+        elif line != ".all()":
+            print("*** Unknown syntax: Place.{:s}".format(line))
+        else:
+            instances = []
+            dictionary = storage.all()
+            for key in dictionary:
+                class_name = "Place"
+                if key.split(".")[0] == class_name:
+                    instances.append(Place(**dictionary[key]))
+            print("[", end="")
+            for i in range(len(instances)):
+                if i > 0:
+                    print(", ", end="")
+                print(instances[i], end="")
+            print("]")
+
+    def do_Review(self, line):
+        """
+        Retrieves all instances of a class by using Review.all()
+        """
+        if line is None or len(line) <= 0:
+            print("*** Unknown syntax: Review.{:s}".format(line))
+        elif line != ".all()":
+            print("*** Unknown syntax: Review.{:s}".format(line))
+        else:
+            instances = []
+            dictionary = storage.all()
+            for key in dictionary:
+                class_name = "Review"
+                if key.split(".")[0] == class_name:
+                    instances.append(Review(**dictionary[key]))
+            print("[", end="")
+            for i in range(len(instances)):
+                if i > 0:
+                    print(", ", end="")
+                print(instances[i], end="")
+            print("]")
+
     def do_create(self, line):
         """
         Creates a new instance of the class passed to the line argument,
