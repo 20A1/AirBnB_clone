@@ -57,7 +57,7 @@ class HBNBCommand(cmd.Cmd):
 
         if len(line) == 0:
             print("** class name missing **")
-        elif len(line) > 0 and line not in self.classes:
+        elif len(line) > 0 and line not in self.__classes:
             print("** class doesn't exist **")
         else:
             inst = None
@@ -75,8 +75,8 @@ class HBNBCommand(cmd.Cmd):
                 inst = Place()
             elif line == "Review":
                 inst = Review()
-            inst.save
-            print(city.id)
+            inst.save()
+            print(inst.id)
 
     def do_show(self, arg):
         """
@@ -106,7 +106,8 @@ class HBNBCommand(cmd.Cmd):
                 key = "{0:s}.{1:s}".format(args[0], args[1])
                 dictionary = storage.all()
                 if key in dictionary:
-                    print(dictionary[key])
+                    print("[{:s}] ({:s}) {}".format(
+                        args[0], args[1], dictionary[key]))
                 else:
                     print("** no instance found **")
 
@@ -175,8 +176,10 @@ class HBNBCommand(cmd.Cmd):
                             instances.append(Place(**dictionary[key]))
                         elif arg == "Review":
                             instances.append(Review(**dictionary[key]))
+        print_str = []
         for items in instances:
-            print(items)
+            print_str.append(items.__str__())
+        print(print_str)
 
     def do_update(self, arg):
         """
