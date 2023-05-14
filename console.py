@@ -55,21 +55,25 @@ class HBNBCommand(cmd.Cmd):
         """
         if line is None or len(line) <= 0:
             print("*** Unknown syntax: BaseModel.{:s}".format(line))
-        elif line != ".all()":
+        elif line != ".all()" and line != ".count()":
             print("*** Unknown syntax: BaseModel.{:s}".format(line))
         else:
             instances = []
+            count = 0
             dictionary = storage.all()
             for key in dictionary:
                 class_name = "BaseModel"
                 if key.split(".")[0] == class_name:
                     instances.append(BaseModel(**dictionary[key]))
-            print("[", end="")
-            for i in range(len(instances)):
-                if i > 0:
-                    print(", ", end="")
-                print(instances[i], end="")
-            print("]")
+            if line == ".all()":
+                print("[", end="")
+                for i in range(len(instances)):
+                    if i > 0:
+                        print(", ", end="")
+                    print(instances[i], end="")
+                print("]")
+            elif line == ".count()":
+                print(len(instances))
 
     def do_User(self, line):
         """
@@ -77,7 +81,7 @@ class HBNBCommand(cmd.Cmd):
         """
         if line is None or len(line) <= 0:
             print("*** Unknown syntax: User.{:s}".format(line))
-        elif line != ".all()":
+        elif line != ".all()" and line != ".count()":
             print("*** Unknown syntax: User.{:s}".format(line))
         else:
             instances = []
@@ -86,12 +90,15 @@ class HBNBCommand(cmd.Cmd):
                 class_name = "User"
                 if key.split(".")[0] == class_name:
                     instances.append(User(**dictionary[key]))
-            print("[", end="")
-            for i in range(len(instances)):
-                if i > 0:
-                    print(", ", end="")
-                print(instances[i], end="")
-            print("]")
+            if line == ".all()":
+                print("[", end="")
+                for i in range(len(instances)):
+                    if i > 0:
+                        print(", ", end="")
+                    print(instances[i], end="")
+                print("]")
+            elif line == ".count()":
+                print(len(instances))
 
     def do_State(self, line):
         """
@@ -99,7 +106,7 @@ class HBNBCommand(cmd.Cmd):
         """
         if line is None or len(line) <= 0:
             print("*** Unknown syntax: lState.{:s}".format(line))
-        elif line != ".all()":
+        elif line != ".all()" and line != ".count()":
             print("*** Unknown syntax: kState.{:s}".format(line))
         else:
             instances = []
@@ -108,12 +115,15 @@ class HBNBCommand(cmd.Cmd):
                 class_name = "State"
                 if key.split(".")[0] == class_name:
                     instances.append(State(**dictionary[key]))
-            print("[", end="")
-            for i in range(len(instances)):
-                if i > 0:
-                    print(", ", end="")
-                print(instances[i], end="")
-            print("]")
+            if line == ".all()":
+                print("[", end="")
+                for i in range(len(instances)):
+                    if i > 0:
+                        print(", ", end="")
+                    print(instances[i], end="")
+                print("]")
+            elif line == ".count()":
+                print(len(instances))
 
     def do_City(self, line):
         """
@@ -121,7 +131,7 @@ class HBNBCommand(cmd.Cmd):
         """
         if line is None or len(line) <= 0:
             print("*** Unknown syntax: City.{:s}".format(line))
-        elif line != ".all()":
+        elif line != ".all()" and line != ".count()":
             print("*** Unknown syntax: City.{:s}".format(line))
         else:
             instances = []
@@ -130,12 +140,15 @@ class HBNBCommand(cmd.Cmd):
                 class_name = "City"
                 if key.split(".")[0] == class_name:
                     instances.append(City(**dictionary[key]))
-            print("[", end="")
-            for i in range(len(instances)):
-                if i > 0:
-                    print(", ", end="")
-                print(instances[i], end="")
-            print("]")
+            if line == ".all()":
+                print("[", end="")
+                for i in range(len(instances)):
+                    if i > 0:
+                        print(", ", end="")
+                    print(instances[i], end="")
+                print("]")
+            elif line == ".count()":
+                print(len(instances))
 
     def do_Amenity(self, line):
         """
@@ -143,7 +156,7 @@ class HBNBCommand(cmd.Cmd):
         """
         if line is None or len(line) <= 0:
             print("*** Unknown syntax: Amenity.{:s}".format(line))
-        elif line != ".all()":
+        elif line != ".all()" and line != ".count()":
             print("*** Unknown syntax: Amenity.{:s}".format(line))
         else:
             instances = []
@@ -152,12 +165,15 @@ class HBNBCommand(cmd.Cmd):
                 class_name = "Amenity"
                 if key.split(".")[0] == class_name:
                     instances.append(Amenity(**dictionary[key]))
-            print("[", end="")
-            for i in range(len(instances)):
-                if i > 0:
-                    print(", ", end="")
-                print(instances[i], end="")
-            print("]")
+            if line == ".all()":
+                print("[", end="")
+                for i in range(len(instances)):
+                    if i > 0:
+                        print(", ", end="")
+                    print(instances[i], end="")
+                print("]")
+            elif line == ".count()":
+                print(len(instances))
 
     def do_Place(self, line):
         """
@@ -165,7 +181,7 @@ class HBNBCommand(cmd.Cmd):
         """
         if line is None or len(line) <= 0:
             print("*** Unknown syntax: Place.{:s}".format(line))
-        elif line != ".all()":
+        elif line != ".all()" and line != ".count()":
             print("*** Unknown syntax: Place.{:s}".format(line))
         else:
             instances = []
@@ -174,12 +190,15 @@ class HBNBCommand(cmd.Cmd):
                 class_name = "Place"
                 if key.split(".")[0] == class_name:
                     instances.append(Place(**dictionary[key]))
-            print("[", end="")
-            for i in range(len(instances)):
-                if i > 0:
-                    print(", ", end="")
-                print(instances[i], end="")
-            print("]")
+            if line == ".all()":
+                print("[", end="")
+                for i in range(len(instances)):
+                    if i > 0:
+                        print(", ", end="")
+                    print(instances[i], end="")
+                print("]")
+            elif line == ".count()":
+                print(len(instances))
 
     def do_Review(self, line):
         """
@@ -187,7 +206,7 @@ class HBNBCommand(cmd.Cmd):
         """
         if line is None or len(line) <= 0:
             print("*** Unknown syntax: Review.{:s}".format(line))
-        elif line != ".all()":
+        elif line != ".all()" and line != ".count()":
             print("*** Unknown syntax: Review.{:s}".format(line))
         else:
             instances = []
@@ -196,12 +215,15 @@ class HBNBCommand(cmd.Cmd):
                 class_name = "Review"
                 if key.split(".")[0] == class_name:
                     instances.append(Review(**dictionary[key]))
-            print("[", end="")
-            for i in range(len(instances)):
-                if i > 0:
-                    print(", ", end="")
-                print(instances[i], end="")
-            print("]")
+            if line == ".all()":
+                print("[", end="")
+                for i in range(len(instances)):
+                    if i > 0:
+                        print(", ", end="")
+                    print(instances[i], end="")
+                print("]")
+            elif line == ".count()":
+                print(len(instances))
 
     def do_create(self, line):
         """
