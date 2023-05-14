@@ -20,4 +20,4 @@ class State(BaseModel):
         else:
             if "name" in kwargs:
                 self.name = kwargs["name"]
-        super().__init(*args, **kwargs)
+        super().__init__(*args, **kwargs)
