@@ -27,19 +27,7 @@ class User(BaseModel):
             self.first_name = ""
             self.last_name = ""
         else:
-            if "email" in kwargs:
-                self.email = kwargs["email"]
-            else:
-                self.email = ""
-            if "password" in kwargs:
-                self.password = kwargs["password"]
-            else:
-                self.password = ""
-            if "first_name" in kwargs:
-                self.first_name = kwargs["email"]
-            else:
-                self.first_name = ""
-            if "last_name" in kwargs:
-                self.last_name = kwargs["last_name"]
-            else:
-                self.last_name = ""
+            for key in kwargs:
+                if key == "__class__":
+                    continue
+                setattr(self, key, kwargs[key])
