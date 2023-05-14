@@ -74,5 +74,5 @@ class HBNBCommand(cmd.Cmd):
         print(class_id)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     HBNBCommand().cmdloop()
