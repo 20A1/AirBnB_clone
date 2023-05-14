@@ -20,7 +20,6 @@ class User(BaseModel):
     """
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
         if kwargs is None or len(kwargs) == 0:
             self.email = ""
             self.password = ""
@@ -31,3 +30,4 @@ class User(BaseModel):
                 if key == "__class__":
                     continue
                 setattr(self, key, kwargs[key])
+        super().__init__(*args, **kwargs)
