@@ -24,15 +24,8 @@ class Review(BaseModel):
             self.user_id = ""
             self.text = ""
         else:
-            if "place_id" in kwargs:
-                self.place_id = kwargs["place_id"]
-            else:
-                self.place_id = ""
-            if "user_id" in kwargs:
-                self.user_id = kwargs["user_id"]
-            else:
-                self.user_id = ""
-            if "text" in kwargs:
-                self.text = kwargs["text"]
-            else:
-                self.text = ""
+            for key in kwargs:
+                if key == "__class__":
+                    continue
+                setattr(self, key, kwargs[key])
+        super().__init__(*args, **kwargs)
