@@ -107,12 +107,21 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
         elif arg_type == "update":
             key = "BaseModel.{:s}".format(class_id)
-            if len(attribute) == 3:
+            if "{" not in line or "}" not in line:
                 update_attrib1 = attribute[1].strip("\"")
                 update_value1 = attribute[2].strip("\")")
                 if key in dictionary:
                     dictionary[key][update_attrib1] = update_value1
                     storage.save()
+                else:
+                    print("** no instance found **")
+            else:
+                string_dict = line.split(" ", maxsplit=1)[1].strip(")")
+                arg_dict = eval(string_dict)
+                if key in dictionary:
+                    for arg_key in arg_dict:
+                        dictionary[key][arg_key] = arg_dict[arg_key]
+                        storage.save()
                 else:
                     print("** no instance found **")
 
@@ -173,12 +182,21 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
         elif arg_type == "update":
             key = "User.{:s}".format(class_id)
-            if len(attribute) == 3:
+            if "{" not in line or "}" not in line:
                 update_attrib1 = attribute[1].strip("\"")
                 update_value1 = attribute[2].strip("\")")
                 if key in dictionary:
                     dictionary[key][update_attrib1] = update_value1
                     storage.save()
+                else:
+                    print("** no instance found **")
+            else:
+                string_dict = line.split(" ", maxsplit=1)[1].strip(")")
+                arg_dict = eval(string_dict)
+                if key in dictionary:
+                    for arg_key in arg_dict:
+                        dictionary[key][arg_key] = arg_dict[arg_key]
+                        storage.save()
                 else:
                     print("** no instance found **")
 
@@ -238,12 +256,21 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
         elif arg_type == "update":
             key = "State.{:s}".format(class_id)
-            if len(attribute) == 3:
+            if "{" not in line or "}" not in line:
                 update_attrib1 = attribute[1].strip("\"")
                 update_value1 = attribute[2].strip("\")")
                 if key in dictionary:
                     dictionary[key][update_attrib1] = update_value1
                     storage.save()
+                else:
+                    print("** no instance found **")
+            else:
+                string_dict = line.split(" ", maxsplit=1)[1].strip(")")
+                arg_dict = eval(string_dict)
+                if key in dictionary:
+                    for arg_key in arg_dict:
+                        dictionary[key][arg_key] = arg_dict[arg_key]
+                        storage.save()
                 else:
                     print("** no instance found **")
 
@@ -303,12 +330,21 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
         elif arg_type == "update":
             key = "City.{:s}".format(class_id)
-            if len(attribute) == 3:
+            if "{" not in line or "}" not in line:
                 update_attrib1 = attribute[1].strip("\"")
                 update_value1 = attribute[2].strip("\")")
                 if key in dictionary:
                     dictionary[key][update_attrib1] = update_value1
                     storage.save()
+                else:
+                    print("** no instance found **")
+            else:
+                string_dict = line.split(" ", maxsplit=1)[1].strip(")")
+                arg_dict = eval(string_dict)
+                if key in dictionary:
+                    for arg_key in arg_dict:
+                        dictionary[key][arg_key] = arg_dict[arg_key]
+                        storage.save()
                 else:
                     print("** no instance found **")
 
@@ -368,12 +404,21 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
         elif arg_type == "update":
             key = "Amenity.{:s}".format(class_id)
-            if len(attribute) == 3:
+            if "{" not in line or "}" not in line:
                 update_attrib1 = attribute[1].strip("\"")
                 update_value1 = attribute[2].strip("\")")
                 if key in dictionary:
                     dictionary[key][update_attrib1] = update_value1
                     storage.save()
+                else:
+                    print("** no instance found **")
+            else:
+                string_dict = line.split(" ", maxsplit=1)[1].strip(")")
+                arg_dict = eval(string_dict)
+                if key in dictionary:
+                    for arg_key in arg_dict:
+                        dictionary[key][arg_key] = arg_dict[arg_key]
+                        storage.save()
                 else:
                     print("** no instance found **")
 
@@ -433,12 +478,21 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
         elif arg_type == "update":
             key = "Place.{:s}".format(class_id)
-            if len(attribute) == 3:
+            if "{" not in line or "}" not in line:
                 update_attrib1 = attribute[1].strip("\"")
                 update_value1 = attribute[2].strip("\")")
                 if key in dictionary:
                     dictionary[key][update_attrib1] = update_value1
                     storage.save()
+                else:
+                    print("** no instance found **")
+            else:
+                string_dict = line.split(" ", maxsplit=1)[1].strip(")")
+                arg_dict = eval(string_dict)
+                if key in dictionary:
+                    for arg_key in arg_dict:
+                        dictionary[key][arg_key] = arg_dict[arg_key]
+                        storage.save()
                 else:
                     print("** no instance found **")
 
@@ -498,12 +552,21 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
         elif arg_type == "update":
             key = "Review.{:s}".format(class_id)
-            if len(attribute) == 3:
+            if "{" not in line or "}" not in line:
                 update_attrib1 = attribute[1].strip("\"")
                 update_value1 = attribute[2].strip("\")")
                 if key in dictionary:
                     dictionary[key][update_attrib1] = update_value1
                     storage.save()
+                else:
+                    print("** no instance found **")
+            else:
+                string_dict = line.split(" ", maxsplit=1)[1].strip(")")
+                arg_dict = eval(string_dict)
+                if key in dictionary:
+                    for arg_key in arg_dict:
+                        dictionary[key][arg_key] = arg_dict[arg_key]
+                        storage.save()
                 else:
                     print("** no instance found **")
 
