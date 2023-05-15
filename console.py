@@ -99,7 +99,8 @@ class HBNBCommand(cmd.Cmd):
             if key in dictionary:
                 del (dictionary[key])
                 storage.save()
-
+            else:
+                print("** no instance found **")
 
     def do_User(self, line):
         """
@@ -150,6 +151,8 @@ class HBNBCommand(cmd.Cmd):
             if key in dictionary:
                 del (dictionary[key])
                 storage.save()
+            else:
+                print("** no instance found **")
 
     def do_State(self, line):
         """
@@ -199,6 +202,8 @@ class HBNBCommand(cmd.Cmd):
             if key in dictionary:
                 del (dictionary[key])
                 storage.save()
+            else:
+                print("** no instance found **")
 
     def do_City(self, line):
         """
@@ -248,6 +253,8 @@ class HBNBCommand(cmd.Cmd):
             if key in dictionary:
                 del (dictionary[key])
                 storage.save()
+            else:
+                print("** no instance found **")
 
     def do_Amenity(self, line):
         """
@@ -297,6 +304,8 @@ class HBNBCommand(cmd.Cmd):
             if key in dictionary:
                 del (dictionary[key])
                 storage.save()
+            else:
+                print("** no instance found **")
 
     def do_Place(self, line):
         """
@@ -346,6 +355,8 @@ class HBNBCommand(cmd.Cmd):
             if key in dictionary:
                 del (dictionary[key])
                 storage.save()
+            else:
+                print("** no instance found **")
 
     def do_Review(self, line):
         """
@@ -395,6 +406,8 @@ class HBNBCommand(cmd.Cmd):
             if key in dictionary:
                 del (dictionary[key])
                 storage.save()
+            else:
+                print("** no instance found **")
 
     def do_create(self, line):
         """
