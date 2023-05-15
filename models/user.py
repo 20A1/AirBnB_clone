@@ -20,12 +20,11 @@ class User(BaseModel):
     """
 
     def __init__(self, *args, **kwargs):
-        if kwargs is None or len(kwargs) == 0:
-            self.email = ""
-            self.password = ""
-            self.first_name = ""
-            self.last_name = ""
-        else:
+        self.email = ""
+        self.password = ""
+        self.first_name = ""
+        self.last_name = ""
+        if kwargs is not None and len(kwargs) > 0:
             for key in kwargs:
                 if key == "__class__":
                     continue
