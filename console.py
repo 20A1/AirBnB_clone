@@ -21,6 +21,7 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
     __classes = ["BaseModel", "User", "State", "City", "Amenity", "Place",
                  "Review"]
+    __method_arg = ["all", "count", "show", "destroy", "update"]
 
     def help_quit(self):
         print("Quit command to exit the program\n")
@@ -53,177 +54,297 @@ class HBNBCommand(cmd.Cmd):
         """
         Retrieves all instances of a class by using BaseModel.all()
         """
+        error_string = "*** Unknown syntax: BaseModel{:s}".format(line)
         if line is None or len(line) <= 0:
-            print("*** Unknown syntax: BaseModel.{:s}".format(line))
-        elif line != ".all()" and line != ".count()":
-            print("*** Unknown syntax: BaseModel.{:s}".format(line))
-        else:
-            instances = []
-            count = 0
-            dictionary = storage.all()
-            for key in dictionary:
-                class_name = "BaseModel"
-                if key.split(".")[0] == class_name:
-                    instances.append(BaseModel(**dictionary[key]))
-            if line == ".all()":
-                print("[", end="")
-                for i in range(len(instances)):
-                    if i > 0:
-                        print(", ", end="")
-                    print(instances[i], end="")
-                print("]")
-            elif line == ".count()":
-                print(len(instances))
+            print(error_string)
+            return
+        arg = line.split(".")
+        if len(arg) <= 1:
+            print(error_string)
+            return
+        arg_type = arg[1].split("(")[0]
+        if arg_type not in self.__method_arg:
+            print(error_string)
+            return
+        class_id = arg[1].split("\"")
+        if len(class_id) <= 1:
+            print(error_string)
+            return
+        class_id = class_id[1]
+        instances = []
+        dictionary = storage.all()
+        for key in dictionary:
+            class_name = "BaseModel"
+            if key.split(".")[0] == class_name:
+                instances.append(BaseModel(**dictionary[key]))
+        if arg_type == "all":
+            print("[", end="")
+            for i in range(len(instances)):
+                if i > 0:
+                    print(", ", end="")
+                print(instances[i], end="")
+            print("]")
+        elif arg_type == ".count()":
+            print(len(instances))
+        elif arg_type == "show":
+            for obj in instances:
+                if obj.id == class_id:
+                    print(obj)
+                    return
+            print("** no instance found **")
 
     def do_User(self, line):
         """
         Retrieves all instances of a class by using User.all()
         """
+        error_string = "*** Unknown syntax: User{:s}".format(line)
         if line is None or len(line) <= 0:
-            print("*** Unknown syntax: User.{:s}".format(line))
-        elif line != ".all()" and line != ".count()":
-            print("*** Unknown syntax: User.{:s}".format(line))
-        else:
-            instances = []
-            dictionary = storage.all()
-            for key in dictionary:
-                class_name = "User"
-                if key.split(".")[0] == class_name:
-                    instances.append(User(**dictionary[key]))
-            if line == ".all()":
-                print("[", end="")
-                for i in range(len(instances)):
-                    if i > 0:
-                        print(", ", end="")
-                    print(instances[i], end="")
-                print("]")
-            elif line == ".count()":
-                print(len(instances))
+            print(error_string)
+            return
+        arg = line.split(".")
+        if len(arg) <= 1:
+            print(error_string)
+            return
+        arg_type = arg[1].split("(")[0]
+        if arg_type not in self.__method_arg:
+            print(error_string)
+            return
+        class_id = arg[1].split("\"")
+        if len(class_id) <= 1:
+            print(error_string)
+            return
+        class_id = class_id[1]
+        instances = []
+        dictionary = storage.all()
+        for key in dictionary:
+            class_name = "User"
+            if key.split(".")[0] == class_name:
+                instances.append(User(**dictionary[key]))
+        if arg_type == "all":
+            print("[", end="")
+            for i in range(len(instances)):
+                if i > 0:
+                    print(", ", end="")
+                print(instances[i], end="")
+            print("]")
+        elif arg_type == ".count()":
+            print(len(instances))
+        elif arg_type == "show":
+            for obj in instances:
+                if obj.id == class_id:
+                    print(obj)
+                    return
+            print("** no instance found **")
 
     def do_State(self, line):
         """
         Retrieves all instances of a class by using State.all()
         """
+        error_string = "*** Unknown syntax: State{:s}".format(line)
         if line is None or len(line) <= 0:
-            print("*** Unknown syntax: lState.{:s}".format(line))
-        elif line != ".all()" and line != ".count()":
-            print("*** Unknown syntax: kState.{:s}".format(line))
-        else:
-            instances = []
-            dictionary = storage.all()
-            for key in dictionary:
-                class_name = "State"
-                if key.split(".")[0] == class_name:
-                    instances.append(State(**dictionary[key]))
-            if line == ".all()":
-                print("[", end="")
-                for i in range(len(instances)):
-                    if i > 0:
-                        print(", ", end="")
-                    print(instances[i], end="")
-                print("]")
-            elif line == ".count()":
-                print(len(instances))
+            print(error_string)
+            return
+        arg = line.split(".")
+        if len(arg) <= 1:
+            print(error_string)
+            return
+        arg_type = arg[1].split("(")[0]
+        if arg_type not in self.__method_arg:
+            print(error_string)
+        class_id = arg[1].split("\"")
+        if len(class_id) <= 1:
+            print(error_string)
+            return
+        class_id = class_id[1]
+        instances = []
+        dictionary = storage.all()
+        for key in dictionary:
+            class_name = "State"
+            if key.split(".")[0] == class_name:
+                instances.append(State(**dictionary[key]))
+        if arg_type == "all":
+            print("[", end="")
+            for i in range(len(instances)):
+                if i > 0:
+                    print(", ", end="")
+                print(instances[i], end="")
+            print("]")
+        elif arg_type == ".count()":
+            print(len(instances))
+        elif arg_type == "show":
+            for obj in instances:
+                if obj.id == class_id:
+                    print(obj)
+                    return
+            print("** no instance found **")
 
     def do_City(self, line):
         """
         Retrieves all instances of a class by using City.all()
         """
+        error_string = "*** Unknown syntax: City{:s}".format(line)
         if line is None or len(line) <= 0:
-            print("*** Unknown syntax: City.{:s}".format(line))
-        elif line != ".all()" and line != ".count()":
-            print("*** Unknown syntax: City.{:s}".format(line))
-        else:
-            instances = []
-            dictionary = storage.all()
-            for key in dictionary:
-                class_name = "City"
-                if key.split(".")[0] == class_name:
-                    instances.append(City(**dictionary[key]))
-            if line == ".all()":
-                print("[", end="")
-                for i in range(len(instances)):
-                    if i > 0:
-                        print(", ", end="")
-                    print(instances[i], end="")
-                print("]")
-            elif line == ".count()":
-                print(len(instances))
+            print(error_string)
+            return
+        arg = line.split(".")
+        if len(arg) <= 1:
+            print(error_string)
+            return
+        arg_type = arg[1].split("(")[0]
+        if arg_type not in self.__method_arg:
+            print(error_string)
+        class_id = arg[1].split("\"")
+        if len(class_id) <= 1:
+            print(error_string)
+            return
+        class_id = class_id[1]
+        instances = []
+        dictionary = storage.all()
+        for key in dictionary:
+            class_name = "City"
+            if key.split(".")[0] == class_name:
+                instances.append(City(**dictionary[key]))
+        if arg_type == "all":
+            print("[", end="")
+            for i in range(len(instances)):
+                if i > 0:
+                    print(", ", end="")
+                print(instances[i], end="")
+            print("]")
+        elif arg_type == ".count()":
+            print(len(instances))
+        elif arg_type == "show":
+            for obj in instances:
+                if obj.id == class_id:
+                    print(obj)
+                    return
+            print("** no instance found **")
 
     def do_Amenity(self, line):
         """
         Retrieves all instances of a class by using Amenity.all()
         """
+        error_string = "*** Unknown syntax: Amenity{:s}".format(line)
         if line is None or len(line) <= 0:
-            print("*** Unknown syntax: Amenity.{:s}".format(line))
-        elif line != ".all()" and line != ".count()":
-            print("*** Unknown syntax: Amenity.{:s}".format(line))
-        else:
-            instances = []
-            dictionary = storage.all()
-            for key in dictionary:
-                class_name = "Amenity"
-                if key.split(".")[0] == class_name:
-                    instances.append(Amenity(**dictionary[key]))
-            if line == ".all()":
-                print("[", end="")
-                for i in range(len(instances)):
-                    if i > 0:
-                        print(", ", end="")
-                    print(instances[i], end="")
-                print("]")
-            elif line == ".count()":
-                print(len(instances))
+            print(error_string)
+            return
+        arg = line.split(".")
+        if len(arg) <= 1:
+            print(error_string)
+            return
+        arg_type = arg[1].split("(")[0]
+        if arg_type not in self.__method_arg:
+            print(error_string)
+        class_id = arg[1].split("\"")
+        if len(class_id) <= 1:
+            print(error_string)
+            return
+        class_id = class_id[1]
+        instances = []
+        dictionary = storage.all()
+        for key in dictionary:
+            class_name = "Amenity"
+            if key.split(".")[0] == class_name:
+                instances.append(Amenity(**dictionary[key]))
+        if arg_type == "all":
+            print("[", end="")
+            for i in range(len(instances)):
+                if i > 0:
+                    print(", ", end="")
+                print(instances[i], end="")
+            print("]")
+        elif arg_type == ".count()":
+            print(len(instances))
+        elif arg_type == "show":
+            for obj in instances:
+                if obj.id == class_id:
+                    print(obj)
+                    return
+            print("** no instance found **")
 
     def do_Place(self, line):
         """
         Retrieves all instances of a class by using Place.all()
         """
+        error_string = "*** Unknown syntax: Place{:s}".format(line)
         if line is None or len(line) <= 0:
-            print("*** Unknown syntax: Place.{:s}".format(line))
-        elif line != ".all()" and line != ".count()":
-            print("*** Unknown syntax: Place.{:s}".format(line))
-        else:
-            instances = []
-            dictionary = storage.all()
-            for key in dictionary:
-                class_name = "Place"
-                if key.split(".")[0] == class_name:
-                    instances.append(Place(**dictionary[key]))
-            if line == ".all()":
-                print("[", end="")
-                for i in range(len(instances)):
-                    if i > 0:
-                        print(", ", end="")
-                    print(instances[i], end="")
-                print("]")
-            elif line == ".count()":
-                print(len(instances))
+            print(error_string)
+            return
+        arg = line.split(".")
+        if len(arg) <= 1:
+            print(error_string)
+            return
+        arg_type = arg[1].split("(")[0]
+        if arg_type not in self.__method_arg:
+            print(error_string)
+        class_id = arg[1].split("\"")
+        if len(class_id) <= 1:
+            print(error_string)
+            return
+        class_id = class_id[1]
+        instances = []
+        dictionary = storage.all()
+        for key in dictionary:
+            class_name = "Place"
+            if key.split(".")[0] == class_name:
+                instances.append(Place(**dictionary[key]))
+        if arg_type == "all":
+            print("[", end="")
+            for i in range(len(instances)):
+                if i > 0:
+                    print(", ", end="")
+                print(instances[i], end="")
+            print("]")
+        elif arg_type == ".count()":
+            print(len(instances))
+        elif arg_type == "show":
+            for obj in instances:
+                if obj.id == class_id:
+                    print(obj)
+                    return
+            print("** no instance found **")
 
     def do_Review(self, line):
         """
         Retrieves all instances of a class by using Review.all()
         """
+        error_string = "*** Unknown syntax: Review{:s}".format(line)
         if line is None or len(line) <= 0:
-            print("*** Unknown syntax: Review.{:s}".format(line))
-        elif line != ".all()" and line != ".count()":
-            print("*** Unknown syntax: Review.{:s}".format(line))
-        else:
-            instances = []
-            dictionary = storage.all()
-            for key in dictionary:
-                class_name = "Review"
-                if key.split(".")[0] == class_name:
-                    instances.append(Review(**dictionary[key]))
-            if line == ".all()":
-                print("[", end="")
-                for i in range(len(instances)):
-                    if i > 0:
-                        print(", ", end="")
-                    print(instances[i], end="")
-                print("]")
-            elif line == ".count()":
-                print(len(instances))
+            print(error_string)
+            return
+        arg = line.split(".")
+        if len(arg) <= 1:
+            print(error_string)
+            return
+        arg_type = arg[1].split("(")[0]
+        if arg_type not in self.__method_arg:
+            print(error_string)
+        class_id = arg[1].split("\"")
+        if len(class_id) <= 1:
+            print(error_string)
+            return
+        class_id = class_id[1]
+        instances = []
+        dictionary = storage.all()
+        for key in dictionary:
+            class_name = "Review"
+            if key.split(".")[0] == class_name:
+                instances.append(Review(**dictionary[key]))
+        if arg_type == "all":
+            print("[", end="")
+            for i in range(len(instances)):
+                if i > 0:
+                    print(", ", end="")
+                print(instances[i], end="")
+            print("]")
+        elif arg_type == ".count()":
+            print(len(instances))
+        elif arg_type == "show":
+            for obj in instances:
+                if obj.id == class_id:
+                    print(obj)
+                    return
+            print("** no instance found **")
 
     def do_create(self, line):
         """
