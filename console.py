@@ -67,10 +67,11 @@ class HBNBCommand(cmd.Cmd):
             print(error_string)
             return
         class_id = arg[1].split("\"")
-        if len(class_id) <= 1:
+        if len(class_id) <= 1 and arg_type == "show" or arg_type == "destroy":
             print(error_string)
             return
-        class_id = class_id[1]
+        else:
+            class_id = class_id[1]
         instances = []
         dictionary = storage.all()
         for key in dictionary:
@@ -92,6 +93,12 @@ class HBNBCommand(cmd.Cmd):
                     print(obj)
                     return
             print("** no instance found **")
+        elif arg_type == "destroy":
+            key = "BaseModel.{:s}".format(class_id)
+            if key in dictionary:
+                del (dictionary[key])
+                storage.save()
+
 
     def do_User(self, line):
         """
@@ -110,10 +117,11 @@ class HBNBCommand(cmd.Cmd):
             print(error_string)
             return
         class_id = arg[1].split("\"")
-        if len(class_id) <= 1:
+        if len(class_id) <= 1 and arg_type == "show" or arg_type == "destroy":
             print(error_string)
             return
-        class_id = class_id[1]
+        else:
+            class_id = class_id[1]
         instances = []
         dictionary = storage.all()
         for key in dictionary:
@@ -135,6 +143,11 @@ class HBNBCommand(cmd.Cmd):
                     print(obj)
                     return
             print("** no instance found **")
+        elif arg_type == "destroy":
+            key = "User.{:s}".format(class_id)
+            if key in dictionary:
+                del (dictionary[key])
+                storage.save()
 
     def do_State(self, line):
         """
@@ -152,10 +165,11 @@ class HBNBCommand(cmd.Cmd):
         if arg_type not in self.__method_arg:
             print(error_string)
         class_id = arg[1].split("\"")
-        if len(class_id) <= 1:
+        if len(class_id) <= 1 and arg_type == "show" or arg_type == "destroy":
             print(error_string)
             return
-        class_id = class_id[1]
+        else:
+            class_id = class_id[1]
         instances = []
         dictionary = storage.all()
         for key in dictionary:
@@ -177,6 +191,11 @@ class HBNBCommand(cmd.Cmd):
                     print(obj)
                     return
             print("** no instance found **")
+        elif arg_type == "destroy":
+            key = "State.{:s}".format(class_id)
+            if key in dictionary:
+                del (dictionary[key])
+                storage.save()
 
     def do_City(self, line):
         """
@@ -194,10 +213,11 @@ class HBNBCommand(cmd.Cmd):
         if arg_type not in self.__method_arg:
             print(error_string)
         class_id = arg[1].split("\"")
-        if len(class_id) <= 1:
+        if len(class_id) <= 1 and arg_type == "show" or arg_type == "destroy":
             print(error_string)
             return
-        class_id = class_id[1]
+        else:
+            class_id = class_id[1]
         instances = []
         dictionary = storage.all()
         for key in dictionary:
@@ -219,6 +239,11 @@ class HBNBCommand(cmd.Cmd):
                     print(obj)
                     return
             print("** no instance found **")
+        elif arg_type == "destroy":
+            key = "City.{:s}".format(class_id)
+            if key in dictionary:
+                del (dictionary[key])
+                storage.save()
 
     def do_Amenity(self, line):
         """
@@ -236,10 +261,11 @@ class HBNBCommand(cmd.Cmd):
         if arg_type not in self.__method_arg:
             print(error_string)
         class_id = arg[1].split("\"")
-        if len(class_id) <= 1:
+        if len(class_id) <= 1 and arg_type == "show" or arg_type == "destroy":
             print(error_string)
             return
-        class_id = class_id[1]
+        else:
+            class_id = class_id[1]
         instances = []
         dictionary = storage.all()
         for key in dictionary:
@@ -261,6 +287,11 @@ class HBNBCommand(cmd.Cmd):
                     print(obj)
                     return
             print("** no instance found **")
+        elif arg_type == "destroy":
+            key = "Amenity.{:s}".format(class_id)
+            if key in dictionary:
+                del (dictionary[key])
+                storage.save()
 
     def do_Place(self, line):
         """
@@ -278,10 +309,11 @@ class HBNBCommand(cmd.Cmd):
         if arg_type not in self.__method_arg:
             print(error_string)
         class_id = arg[1].split("\"")
-        if len(class_id) <= 1:
+        if len(class_id) <= 1 and arg_type == "show" or arg_type == "destroy":
             print(error_string)
             return
-        class_id = class_id[1]
+        else:
+            class_id = class_id[1]
         instances = []
         dictionary = storage.all()
         for key in dictionary:
@@ -303,6 +335,11 @@ class HBNBCommand(cmd.Cmd):
                     print(obj)
                     return
             print("** no instance found **")
+        elif arg_type == "destroy":
+            key = "Place.{:s}".format(class_id)
+            if key in dictionary:
+                del (dictionary[key])
+                storage.save()
 
     def do_Review(self, line):
         """
@@ -320,10 +357,11 @@ class HBNBCommand(cmd.Cmd):
         if arg_type not in self.__method_arg:
             print(error_string)
         class_id = arg[1].split("\"")
-        if len(class_id) <= 1:
+        if len(class_id) <= 1 and arg_type == "show" or arg_type == "destroy":
             print(error_string)
             return
-        class_id = class_id[1]
+        else:
+            class_id = class_id[1]
         instances = []
         dictionary = storage.all()
         for key in dictionary:
@@ -345,6 +383,11 @@ class HBNBCommand(cmd.Cmd):
                     print(obj)
                     return
             print("** no instance found **")
+        elif arg_type == "destroy":
+            key = "Review.{:s}".format(class_id)
+            if key in dictionary:
+                del (dictionary[key])
+                storage.save()
 
     def do_create(self, line):
         """
