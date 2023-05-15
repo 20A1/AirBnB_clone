@@ -67,12 +67,16 @@ class HBNBCommand(cmd.Cmd):
             print(error_string)
             return
         class_id = arg[1].split("\"")
-        if arg_type == "show" or arg_type == "destroy":
+        if arg_type == "show" or arg_type == "destroy" or arg_type == "update":
             if len(class_id) <= 1:
                 print(error_string)
                 return
             else:
                 class_id = class_id[1]
+        attribute = arg[1].split("()")[0].split(", ")
+        if arg_type == "update" and len(attribute) < 2:
+            print(error_string)
+            return
         instances = []
         dictionary = storage.all()
         for key in dictionary:
@@ -101,6 +105,16 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
             else:
                 print("** no instance found **")
+        elif arg_type == "update":
+            key = "BaseModel.{:s}".format(class_id)
+            if len(attribute) == 3:
+                update_attrib1 = attribute[1].strip("\"")
+                update_value1 = attribute[2].strip("\")")
+                if key in dictionary:
+                    dictionary[key][update_attrib1] = update_value1
+                    storage.save()
+                else:
+                    print("** no instance found **")
 
     def do_User(self, line):
         """
@@ -119,12 +133,16 @@ class HBNBCommand(cmd.Cmd):
             print(error_string)
             return
         class_id = arg[1].split("\"")
-        if arg_type == "show" or arg_type == "destroy":
+        if arg_type == "show" or arg_type == "destroy" or arg_type == "update":
             if len(class_id) <= 1:
                 print(error_string)
                 return
             else:
                 class_id = class_id[1]
+        attribute = arg[1].split("()")[0].split(", ")
+        if arg_type == "update" and len(attribute) < 2:
+            print(error_string)
+            return
         instances = []
         dictionary = storage.all()
         for key in dictionary:
@@ -153,6 +171,16 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
             else:
                 print("** no instance found **")
+        elif arg_type == "update":
+            key = "User.{:s}".format(class_id)
+            if len(attribute) == 3:
+                update_attrib1 = attribute[1].strip("\"")
+                update_value1 = attribute[2].strip("\")")
+                if key in dictionary:
+                    dictionary[key][update_attrib1] = update_value1
+                    storage.save()
+                else:
+                    print("** no instance found **")
 
     def do_State(self, line):
         """
@@ -170,12 +198,16 @@ class HBNBCommand(cmd.Cmd):
         if arg_type not in self.__method_arg:
             print(error_string)
         class_id = arg[1].split("\"")
-        if arg_type == "show" or arg_type == "destroy":
+        if arg_type == "show" or arg_type == "destroy" or arg_type == "update":
             if len(class_id) <= 1:
                 print(error_string)
                 return
             else:
                 class_id = class_id[1]
+        attribute = arg[1].split("()")[0].split(", ")
+        if arg_type == "update" and len(attribute) < 2:
+            print(error_string)
+            return
         instances = []
         dictionary = storage.all()
         for key in dictionary:
@@ -204,6 +236,16 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
             else:
                 print("** no instance found **")
+        elif arg_type == "update":
+            key = "State.{:s}".format(class_id)
+            if len(attribute) == 3:
+                update_attrib1 = attribute[1].strip("\"")
+                update_value1 = attribute[2].strip("\")")
+                if key in dictionary:
+                    dictionary[key][update_attrib1] = update_value1
+                    storage.save()
+                else:
+                    print("** no instance found **")
 
     def do_City(self, line):
         """
@@ -221,12 +263,16 @@ class HBNBCommand(cmd.Cmd):
         if arg_type not in self.__method_arg:
             print(error_string)
         class_id = arg[1].split("\"")
-        if arg_type == "show" or arg_type == "destroy":
+        if arg_type == "show" or arg_type == "destroy" or arg_type == "update":
             if len(class_id) <= 1:
                 print(error_string)
                 return
             else:
                 class_id = class_id[1]
+        attribute = arg[1].split("()")[0].split(", ")
+        if arg_type == "update" and len(attribute) < 2:
+            print(error_string)
+            return
         instances = []
         dictionary = storage.all()
         for key in dictionary:
@@ -255,6 +301,16 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
             else:
                 print("** no instance found **")
+        elif arg_type == "update":
+            key = "City.{:s}".format(class_id)
+            if len(attribute) == 3:
+                update_attrib1 = attribute[1].strip("\"")
+                update_value1 = attribute[2].strip("\")")
+                if key in dictionary:
+                    dictionary[key][update_attrib1] = update_value1
+                    storage.save()
+                else:
+                    print("** no instance found **")
 
     def do_Amenity(self, line):
         """
@@ -272,12 +328,16 @@ class HBNBCommand(cmd.Cmd):
         if arg_type not in self.__method_arg:
             print(error_string)
         class_id = arg[1].split("\"")
-        if arg_type == "show" or arg_type == "destroy":
+        if arg_type == "show" or arg_type == "destroy" or arg_type == "update":
             if len(class_id) <= 1:
                 print(error_string)
                 return
             else:
                 class_id = class_id[1]
+        attribute = arg[1].split("()")[0].split(", ")
+        if arg_type == "update" and len(attribute) < 2:
+            print(error_string)
+            return
         instances = []
         dictionary = storage.all()
         for key in dictionary:
@@ -306,6 +366,16 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
             else:
                 print("** no instance found **")
+        elif arg_type == "update":
+            key = "Amenity.{:s}".format(class_id)
+            if len(attribute) == 3:
+                update_attrib1 = attribute[1].strip("\"")
+                update_value1 = attribute[2].strip("\")")
+                if key in dictionary:
+                    dictionary[key][update_attrib1] = update_value1
+                    storage.save()
+                else:
+                    print("** no instance found **")
 
     def do_Place(self, line):
         """
@@ -323,12 +393,16 @@ class HBNBCommand(cmd.Cmd):
         if arg_type not in self.__method_arg:
             print(error_string)
         class_id = arg[1].split("\"")
-        if arg_type == "show" or arg_type == "destroy":
+        if arg_type == "show" or arg_type == "destroy" or arg_type == "update":
             if len(class_id) <= 1:
                 print(error_string)
                 return
             else:
                 class_id = class_id[1]
+        attribute = arg[1].split("()")[0].split(", ")
+        if arg_type == "update" and len(attribute) < 2:
+            print(error_string)
+            return
         instances = []
         dictionary = storage.all()
         for key in dictionary:
@@ -357,6 +431,16 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
             else:
                 print("** no instance found **")
+        elif arg_type == "update":
+            key = "Place.{:s}".format(class_id)
+            if len(attribute) == 3:
+                update_attrib1 = attribute[1].strip("\"")
+                update_value1 = attribute[2].strip("\")")
+                if key in dictionary:
+                    dictionary[key][update_attrib1] = update_value1
+                    storage.save()
+                else:
+                    print("** no instance found **")
 
     def do_Review(self, line):
         """
@@ -374,12 +458,16 @@ class HBNBCommand(cmd.Cmd):
         if arg_type not in self.__method_arg:
             print(error_string)
         class_id = arg[1].split("\"")
-        if arg_type == "show" or arg_type == "destroy":
+        if arg_type == "show" or arg_type == "destroy" or arg_type == "update":
             if len(class_id) <= 1:
                 print(error_string)
                 return
             else:
                 class_id = class_id[1]
+        attribute = arg[1].split("()")[0].split(", ")
+        if arg_type == "update" and len(attribute) < 2:
+            print(error_string)
+            return
         instances = []
         dictionary = storage.all()
         for key in dictionary:
@@ -408,6 +496,16 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
             else:
                 print("** no instance found **")
+        elif arg_type == "update":
+            key = "Review.{:s}".format(class_id)
+            if len(attribute) == 3:
+                update_attrib1 = attribute[1].strip("\"")
+                update_value1 = attribute[2].strip("\")")
+                if key in dictionary:
+                    dictionary[key][update_attrib1] = update_value1
+                    storage.save()
+                else:
+                    print("** no instance found **")
 
     def do_create(self, line):
         """
