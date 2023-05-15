@@ -67,11 +67,12 @@ class HBNBCommand(cmd.Cmd):
             print(error_string)
             return
         class_id = arg[1].split("\"")
-        if len(class_id) <= 1 and arg_type == "show" or arg_type == "destroy":
-            print(error_string)
-            return
-        else:
-            class_id = class_id[1]
+        if arg_type == "show" or arg_type == "destroy":
+            if len(class_id) <= 1:
+                print(error_string)
+                return
+            else:
+                class_id = class_id[1]
         instances = []
         dictionary = storage.all()
         for key in dictionary:
@@ -85,7 +86,7 @@ class HBNBCommand(cmd.Cmd):
                     print(", ", end="")
                 print(instances[i], end="")
             print("]")
-        elif arg_type == ".count()":
+        elif arg_type == "count":
             print(len(instances))
         elif arg_type == "show":
             for obj in instances:
@@ -117,11 +118,12 @@ class HBNBCommand(cmd.Cmd):
             print(error_string)
             return
         class_id = arg[1].split("\"")
-        if len(class_id) <= 1 and arg_type == "show" or arg_type == "destroy":
-            print(error_string)
-            return
-        else:
-            class_id = class_id[1]
+        if arg_type == "show" or arg_type == "destroy":
+            if len(class_id) <= 1:
+                print(error_string)
+                return
+            else:
+                class_id = class_id[1]
         instances = []
         dictionary = storage.all()
         for key in dictionary:
@@ -135,7 +137,7 @@ class HBNBCommand(cmd.Cmd):
                     print(", ", end="")
                 print(instances[i], end="")
             print("]")
-        elif arg_type == ".count()":
+        elif arg_type == "count":
             print(len(instances))
         elif arg_type == "show":
             for obj in instances:
@@ -165,11 +167,12 @@ class HBNBCommand(cmd.Cmd):
         if arg_type not in self.__method_arg:
             print(error_string)
         class_id = arg[1].split("\"")
-        if len(class_id) <= 1 and arg_type == "show" or arg_type == "destroy":
-            print(error_string)
-            return
-        else:
-            class_id = class_id[1]
+        if arg_type == "show" or arg_type == "destroy":
+            if len(class_id) <= 1:
+                print(error_string)
+                return
+            else:
+                class_id = class_id[1]
         instances = []
         dictionary = storage.all()
         for key in dictionary:
@@ -183,7 +186,7 @@ class HBNBCommand(cmd.Cmd):
                     print(", ", end="")
                 print(instances[i], end="")
             print("]")
-        elif arg_type == ".count()":
+        elif arg_type == "count":
             print(len(instances))
         elif arg_type == "show":
             for obj in instances:
@@ -213,11 +216,12 @@ class HBNBCommand(cmd.Cmd):
         if arg_type not in self.__method_arg:
             print(error_string)
         class_id = arg[1].split("\"")
-        if len(class_id) <= 1 and arg_type == "show" or arg_type == "destroy":
-            print(error_string)
-            return
-        else:
-            class_id = class_id[1]
+        if arg_type == "show" or arg_type == "destroy":
+            if len(class_id) <= 1:
+                print(error_string)
+                return
+            else:
+                class_id = class_id[1]
         instances = []
         dictionary = storage.all()
         for key in dictionary:
@@ -231,7 +235,7 @@ class HBNBCommand(cmd.Cmd):
                     print(", ", end="")
                 print(instances[i], end="")
             print("]")
-        elif arg_type == ".count()":
+        elif arg_type == "count":
             print(len(instances))
         elif arg_type == "show":
             for obj in instances:
@@ -261,11 +265,12 @@ class HBNBCommand(cmd.Cmd):
         if arg_type not in self.__method_arg:
             print(error_string)
         class_id = arg[1].split("\"")
-        if len(class_id) <= 1 and arg_type == "show" or arg_type == "destroy":
-            print(error_string)
-            return
-        else:
-            class_id = class_id[1]
+        if arg_type == "show" or arg_type == "destroy":
+            if len(class_id) <= 1:
+                print(error_string)
+                return
+            else:
+                class_id = class_id[1]
         instances = []
         dictionary = storage.all()
         for key in dictionary:
@@ -279,7 +284,7 @@ class HBNBCommand(cmd.Cmd):
                     print(", ", end="")
                 print(instances[i], end="")
             print("]")
-        elif arg_type == ".count()":
+        elif arg_type == "count":
             print(len(instances))
         elif arg_type == "show":
             for obj in instances:
@@ -309,11 +314,12 @@ class HBNBCommand(cmd.Cmd):
         if arg_type not in self.__method_arg:
             print(error_string)
         class_id = arg[1].split("\"")
-        if len(class_id) <= 1 and arg_type == "show" or arg_type == "destroy":
-            print(error_string)
-            return
-        else:
-            class_id = class_id[1]
+        if arg_type == "show" or arg_type == "destroy":
+            if len(class_id) <= 1:
+                print(error_string)
+                return
+            else:
+                class_id = class_id[1]
         instances = []
         dictionary = storage.all()
         for key in dictionary:
@@ -327,7 +333,7 @@ class HBNBCommand(cmd.Cmd):
                     print(", ", end="")
                 print(instances[i], end="")
             print("]")
-        elif arg_type == ".count()":
+        elif arg_type == "count":
             print(len(instances))
         elif arg_type == "show":
             for obj in instances:
@@ -357,11 +363,12 @@ class HBNBCommand(cmd.Cmd):
         if arg_type not in self.__method_arg:
             print(error_string)
         class_id = arg[1].split("\"")
-        if len(class_id) <= 1 and arg_type == "show" or arg_type == "destroy":
-            print(error_string)
-            return
-        else:
-            class_id = class_id[1]
+        if arg_type == "show" or arg_type == "destroy":
+            if len(class_id) <= 1:
+                print(error_string)
+                return
+            else:
+                class_id = class_id[1]
         instances = []
         dictionary = storage.all()
         for key in dictionary:
@@ -375,7 +382,7 @@ class HBNBCommand(cmd.Cmd):
                     print(", ", end="")
                 print(instances[i], end="")
             print("]")
-        elif arg_type == ".count()":
+        elif arg_type == "count":
             print(len(instances))
         elif arg_type == "show":
             for obj in instances:
