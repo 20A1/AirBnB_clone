@@ -681,6 +681,8 @@ class HBNBCommand(cmd.Cmd):
                 if key in dictionary:
                     del (dictionary[key])
                     storage.save()
+                else:
+                    print("** no instance found **")
 
     def do_all(self, arg):
         """
@@ -714,6 +716,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             if arg not in self.__classes:
                 print("** class doesn't exist **")
+                return
             else:
                 for key in dictionary:
                     if key.split(".")[0] == arg:
